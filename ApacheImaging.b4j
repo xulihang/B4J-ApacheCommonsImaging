@@ -1,0 +1,45 @@
+﻿AppType=JavaFX
+Build1=Default,b4j.example
+File1=Layout1.bjl
+FileGroup1=Default Group
+Group=Default Group
+Library1=jcore
+Library2=jfx
+Library3=jxui
+Library4=javaobject
+Module1=ApacheImageInfo
+Module2=ApacheImaging
+NumberOfFiles=1
+NumberOfLibraries=4
+NumberOfModules=2
+Version=8.9
+@EndOfDesignText@
+#Region Project Attributes 
+	#MainFormWidth: 600
+	#MainFormHeight: 600 
+#End Region
+
+#AdditionalJar: commons-imaging-1.0-alpha2
+
+Sub Process_Globals
+	Private fx As JFX
+	Private MainForm As Form
+	Private xui As XUI 
+	Private Button1 As B4XView
+End Sub
+
+Sub AppStart (Form1 As Form, Args() As String)
+	MainForm = Form1
+	MainForm.RootPane.LoadLayout("Layout1")
+	MainForm.Show
+	Dim imaging As ApacheImaging
+	imaging.Initialize
+	Dim info  As ApacheImageInfo = imaging.getImageInfo(File.Combine(File.DirApp,"test.jpg"))
+	Log(info.PhysicalHeightDpi)
+	Log(info.PhysicalWidthDpi)
+	
+End Sub
+
+Sub Button1_Click
+	xui.MsgboxAsync("Hello World!", "B4X")
+End Sub
